@@ -9,7 +9,9 @@ import { Button } from 'react-bootstrap'
 
 const Hero = ({ movies }) => {
   const navigate = useNavigate()
+
   function reviews(movieId) {
+    console.log('reviews')
     navigate(`/Reviews/${movieId}`)
   }
   return (
@@ -17,7 +19,7 @@ const Hero = ({ movies }) => {
       <Carousel className="movie-carousel-container">
         {movies?.map((movie) => {
           return (
-            <Paper>
+            <Paper key={movie.imdbId}>
               <div className="movie-card-container">
                 <div
                   className="movie-card"
@@ -45,10 +47,14 @@ const Hero = ({ movies }) => {
                       </div>
                     </Link>
                     <div className="movie-review-button-container">
-                      <Button
-                        variant="info"
-                        onClick={reviews(movie.imdbId)}
-                      ></Button>
+                      <div className="movie-review-button-container">
+                        <Button
+                          variant="info"
+                          onClick={() => reviews(movie.imdbId)}
+                        >
+                          Reviews
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>

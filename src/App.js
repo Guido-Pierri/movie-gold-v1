@@ -7,10 +7,12 @@ import Home from './components/home/Home'
 import Header from './components/header/Header'
 import Trailer from './components/trailer/Trailer'
 import Reviews from './components/reviews/Reviews'
+// import NotFound from './components/notFound/NotFound'
+
 function App() {
   const [movies, setMovies] = useState()
   const [movie, setMovie] = useState()
-  const [reviews, setReviews] = useState()
+  const [reviews, setReviews] = useState([])
 
   const getMovies = async () => {
     try {
@@ -24,18 +26,22 @@ function App() {
 
   const getMovieData = async (movieId) => {
     try {
-      const response = api.get(`/api/v1/movies/${movieId}`)
+      const response = await api.get(`/api/v1/movies/${movieId}`)
+
       const singleMovie = response.data
+      console.log(singleMovie)
       setMovie(singleMovie)
-      setReviews(singleMovie.reviews)
-    } catch (err) {
-      console.log(err)
+      console.log(singleMovie.reviewIds)
+      setReviews(singleMovie.reviewIds)
+    } catch (error) {
+      console.error(error)
     }
   }
 
   useEffect(() => {
     getMovies()
   }, [])
+
   return (
     <div className="App">
       <Header />
@@ -54,6 +60,7 @@ function App() {
               />
             }
           ></Route>
+          {/* <Route path="*" element={<NotFound />}></Route> */}
         </Route>
       </Routes>
     </div>

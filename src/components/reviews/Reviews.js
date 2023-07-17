@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import api from '../../api/axiosConfig'
 import { useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
-import ReviewForm from '../reviewForm/ReviewForm'
+import ReviewForm from '../reviewForm/reviewForm'
 
 import React from 'react'
 
@@ -66,7 +66,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
               </Row>
             </>
           }
-          {reviews?.map((r) => {
+          {reviews.map((r) => {
             return (
               <>
                 <Row>
