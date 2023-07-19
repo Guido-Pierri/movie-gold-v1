@@ -3,8 +3,7 @@
   background-color: black;
 }
 .movie-poster {
-  left: 300px;
-  width: 20%;
+  height: 300px;
   border: 1px solid gold;
   border-radius: 10px;
   overflow: hidden;
